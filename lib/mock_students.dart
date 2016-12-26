@@ -28,8 +28,8 @@ final List<CourseMark> mockCourseMarks = [
 
 final List<StudentEnrolment> mockStudentEnrolments = [
   new StudentEnrolment(1, 1, '1169', 'CE', '1A'),
-  new StudentEnrolment(2, 1, '1169', 'CE', '1A'),
-  new StudentEnrolment(3, 1, '1169', 'CE', '1A'),
-  new StudentEnrolment(4, 1, '1169', 'EE', '1A'),
-  new StudentEnrolment(5, 1, '1169', 'EE', '1A')
+  new StudentEnrolment(2, 2, '1169', 'CE', '1A'),
+  new StudentEnrolment(3, 3, '1169', 'CE', '1A'),
+  new StudentEnrolment(4, 4, '1169', 'EE', '1A'),
+  new StudentEnrolment(5, 5, '1169', 'EE', '1A')
 ];
