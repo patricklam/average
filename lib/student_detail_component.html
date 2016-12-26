@@ -16,5 +16,12 @@
     <label>Program: </label>
     <input [(ngModel)]="studentEnrolment.program" placeholder="Program" />
   </div>
+  <div *ngIf="studentMarks != null">
+    <ul class="marks">
+      <li *ngFor="let mark of studentMarks">
+        {{mark.subject}} {{mark.course}}: {{mark.mark}}
+      </li>
+    </ul>
+  </div>
   <button (click)="goBack()">Back</button>
 </div>

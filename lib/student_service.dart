@@ -21,4 +21,9 @@ class StudentService {
     Student s = (await getStudents()).firstWhere((student) => student.uwid == uwid);
     return (await getStudentEnrolments()).firstWhere((enrolment) => enrolment.student_internal_id == s.internal_id);
   }
+
+  Future<List<CourseMark>> getStudentCourseMarks(String uwid) async {
+    Student s = (await getStudents()).firstWhere((student) => student.uwid == uwid);
+    return (await getCourseMarks()).where((courseMark) => courseMark.student_internal_id == s.internal_id);
+  }
 }
