@@ -1,17 +1,7 @@
-<h1>My First AngularDart App</h1>
+<h1>{{title}}</h1>
 
-<material-input #myInput
-                label="Your name"
-                floatingLabel
-                autoFocus>
-</material-input>
-
-<material-button raised 
-                 (trigger)="myDialog.open()"
-                 class="blue">
-    Say Hello
-</material-button>
-
-<hello-dialog #myDialog
-             [name]="myInput.inputText">
-</hello-dialog>
+<nav>
+    <a [routerLink]="['Dashboard']">Dashboard</a>
+    <a [routerLink]="['Students']">Students</a>
+</nav>
+<router-outlet></router-outlet>

@@ -1,0 +1,14 @@
+<div *ngIf="student != null">
+  <h2>{{student.firstname}} {{student.lastname}} details</h2>
+  <div>
+    <label>id: </label>{{student.internal_id}}</div>
+  <div>
+    <label>First name: </label>
+    <input [(ngModel)]="student.firstname" placeholder="firstname" />
+  </div>
+  <div>
+    <label>Last name: </label>
+    <input [(ngModel)]="student.lastname" placeholder="lastname" />
+  </div>
+  <button (click)="goBack()">Back</button>
+</div>
