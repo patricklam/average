@@ -1,7 +1,9 @@
 <div *ngIf="student != null">
   <h2>{{student.firstname}} {{student.lastname}} details</h2>
   <div>
-    <label>id: </label>{{student.internal_id}}</div>
+    <label>UW id: </label>
+    <input [(ngModel)]="student.uwid" placeholder="UW id" />
+  </div>
   <div>
     <label>First name: </label>
     <input [(ngModel)]="student.firstname" placeholder="First name" />

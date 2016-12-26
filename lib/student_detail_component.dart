@@ -14,6 +14,7 @@ import 'student_service.dart';
 
 @Component(
   selector: 'my-student-detail',
+  styleUrls: const ['student_detail_component.css'],
   templateUrl: 'student_detail_component.html',
   )
 class StudentDetailComponent implements OnInit {
