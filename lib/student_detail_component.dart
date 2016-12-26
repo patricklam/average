@@ -22,6 +22,8 @@ class StudentDetailComponent implements OnInit {
   Student student;
   StudentEnrolment studentEnrolment;
   List<CourseMark> studentMarks;
+  double average;
+
   final StudentService _studentService;
   final RouteParams _routeParams;
   final Location _location;
@@ -33,10 +35,14 @@ class StudentDetailComponent implements OnInit {
     var id = int.parse(_id ?? '', onError: (_) => null);
     if (id != null) student = await (_studentService.getStudent(id));
     if (student != null) studentEnrolment = await (_studentService.getStudentEnrolment(student.uwid));
-    if (student != null)
+    if (student != null) {
       studentMarks = await (_studentService.getStudentCourseMarks(student.uwid));
-    else
+      average = studentMarks.fold(0, (x, y) => x + y.mark) / studentMarks.length;
+    }
+    else {
       studentMarks = null;
+      average = 0.0;
+    }
   }
 
   void goBack() => _location.back();
