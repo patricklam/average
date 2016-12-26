@@ -4,11 +4,15 @@
     <label>id: </label>{{student.internal_id}}</div>
   <div>
     <label>First name: </label>
-    <input [(ngModel)]="student.firstname" placeholder="firstname" />
+    <input [(ngModel)]="student.firstname" placeholder="First name" />
   </div>
   <div>
     <label>Last name: </label>
-    <input [(ngModel)]="student.lastname" placeholder="lastname" />
+    <input [(ngModel)]="student.lastname" placeholder="Last name" />
+  </div>
+  <div *ngIf="studentEnrolment != null">
+    <label>Program: </label>
+    <input [(ngModel)]="studentEnrolment.program" placeholder="Program" />
   </div>
   <button (click)="goBack()">Back</button>
 </div>

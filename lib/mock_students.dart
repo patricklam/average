@@ -26,7 +26,7 @@ final List<CourseMark> mockCourseMarks = [
   new CourseMark(10, 5, 'CHE', '102', '001', 77)
 ];
 
-final List<StudentEnrolment> mockEnrolments = [
+final List<StudentEnrolment> mockStudentEnrolments = [
   new StudentEnrolment(1, 1, '1169', 'CE', '1A'),
   new StudentEnrolment(2, 1, '1169', 'CE', '1A'),
   new StudentEnrolment(3, 1, '1169', 'CE', '1A'),

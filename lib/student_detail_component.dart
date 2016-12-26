@@ -9,6 +9,7 @@ import 'package:angular2/platform/common.dart';
 import 'package:angular2_components/angular2_components.dart';
 
 import 'student.dart';
+import 'student_enrolment.dart';
 import 'student_service.dart';
 
 @Component(
@@ -17,6 +18,7 @@ import 'student_service.dart';
   )
 class StudentDetailComponent implements OnInit {
   Student student;
+  StudentEnrolment studentEnrolment;
   final StudentService _studentService;
   final RouteParams _routeParams;
   final Location _location;
@@ -27,6 +29,7 @@ class StudentDetailComponent implements OnInit {
     var _id = _routeParams.get('id');
     var id = int.parse(_id ?? '', onError: (_) => null);
     if (id != null) student = await (_studentService.getStudent(id));
+    if (student != null) studentEnrolment = await (_studentService.getStudentEnrolment(student.uwid));
   }
 
   void goBack() => _location.back();

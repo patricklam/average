@@ -5,7 +5,7 @@ import 'dart:async';
 
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
-//import 'package:angular2_components/angular2_components.dart';
+import 'package:angular2_components/angular2_components.dart';
 
 import 'student.dart';
 import 'student_service.dart';
@@ -14,8 +14,8 @@ import 'student_service.dart';
   selector: 'my-students',
   styleUrls: const ['students_component.css'],
   templateUrl: 'students_component.html',
-//  directives: const [materialDirectives],
-//  providers: const [materialProviders],
+  directives: const [materialDirectives],
+  providers: const [materialProviders],
 )
 
 class StudentsComponent implements OnInit {
@@ -40,5 +40,5 @@ class StudentsComponent implements OnInit {
 
   Future<Null> gotoDetail() => _router.navigate([
     'StudentDetail',
-    {'id': selectedStudent.id.toString()}]);
+    {'id': selectedStudent.internal_id.toString()}]);
 }
