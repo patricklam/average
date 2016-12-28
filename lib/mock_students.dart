@@ -14,16 +14,16 @@ final List<Student> mockStudents = [
 ];
 
 final List<CourseMark> mockCourseMarks = [
-  new CourseMark(1, 1, 'ECE', '150', '001', 100),
-  new CourseMark(2, 1, 'ECE', '105', '001', 94),
-  new CourseMark(3, 1, 'ECE', '140', '001', 93),
-  new CourseMark(4, 1, 'MATH', '115', '001', 88),
-  new CourseMark(5, 1, 'CHE', '102', '001', 77),
-  new CourseMark(6, 2, 'ECE', '150', '001', 28),
-  new CourseMark(7, 3, 'ECE', '105', '001', 94),
-  new CourseMark(8, 4, 'ECE', '140', '001', 93),
-  new CourseMark(9, 5, 'MATH', '115', '001', 88),
-  new CourseMark(10, 5, 'CHE', '102', '001', 77)
+  new CourseMark(1, 1, 'ECE', '150', '001', '100'),
+  new CourseMark(2, 1, 'ECE', '105', '001', '94'),
+  new CourseMark(3, 1, 'ECE', '140', '001', '93'),
+  new CourseMark(4, 1, 'MATH', '115', '001', '88'),
+  new CourseMark(5, 1, 'CHE', '102', '001', '77'),
+  new CourseMark(6, 2, 'ECE', '150', '001', '28'),
+  new CourseMark(7, 3, 'ECE', '105', '001', '94'),
+  new CourseMark(8, 4, 'ECE', '140', '001', '93'),
+  new CourseMark(9, 5, 'MATH', '115', '001', '88'),
+  new CourseMark(10, 5, 'CHE', '102', '001', '77')
 ];
 
 final List<StudentEnrolment> mockStudentEnrolments = [

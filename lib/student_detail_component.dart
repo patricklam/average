@@ -37,7 +37,7 @@ class StudentDetailComponent implements OnInit {
     if (student != null) studentEnrolment = await (_studentService.getStudentEnrolment(student.uwid));
     if (student != null) {
       studentMarks = await (_studentService.getStudentCourseMarks(student.uwid));
-      average = studentMarks.fold(0, (x, y) => x + y.mark) / studentMarks.length;
+      average = studentMarks.fold(0, (x, y) => x + int.parse(y.mark)) / studentMarks.length;
     }
     else {
       studentMarks = null;
