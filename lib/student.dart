@@ -3,6 +3,9 @@ class Student {
   String uwid;
   String firstname, lastname;
 
+  int average;
+  String program;
+
   factory Student.fromJson(Map<String, dynamic> student) =>
     new Student(_toInt(student['internal_id']),
                 student['uwid'],

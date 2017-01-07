@@ -2,7 +2,7 @@
 <div class="grid grid-pad">
   <a *ngFor="let student of students" [routerLink]="['StudentDetail', {id: student.internal_id.toString()}]" class="col-1-4">
     <div class="module student">
-      <h4>{{student.firstname}} {{student.lastname}}</h4>
+      <h4>{{student.firstname}} {{student.lastname}} ({{student.program}}) {{student.average}}</h4>
     </div>
   </a>
 </div>
