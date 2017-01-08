@@ -5,18 +5,15 @@ import 'dart:async';
 
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
-import 'package:angular2_components/angular2_components.dart';
 
-import 'student.dart';
-import 'student_enrolment.dart';
+import '../common/student.dart';
+import '../common/student_enrolment.dart';
 import 'student_service.dart';
 
 @Component(
   selector: 'my-students',
   styleUrls: const ['students_component.css'],
-  templateUrl: 'students_component.html',
-  directives: const [materialDirectives],
-  providers: const [materialProviders],
+  templateUrl: 'students_component.html'
 )
 
 class StudentsComponent implements OnInit {

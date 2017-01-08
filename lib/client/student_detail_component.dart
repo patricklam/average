@@ -6,11 +6,10 @@ import 'dart:async';
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 import 'package:angular2/platform/common.dart';
-import 'package:angular2_components/angular2_components.dart';
 
-import 'student.dart';
-import 'student_enrolment.dart';
-import 'course_mark.dart';
+import '../common/student.dart';
+import '../common/student_enrolment.dart';
+import '../common/course_mark.dart';
 import 'student_service.dart';
 
 @Component(

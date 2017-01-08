@@ -2,7 +2,6 @@
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
 import 'package:angular2/core.dart';
-import 'package:angular2_components/angular2_components.dart';
 import 'package:angular2/router.dart';
 
 import 'dashboard_component.dart';
@@ -14,8 +13,8 @@ import 'students_component.dart';
   selector: 'my-app',
   styleUrls: const ['app_component.css'],
   templateUrl: 'app_component.html',
-  directives: const [materialDirectives, ROUTER_DIRECTIVES],
-  providers: const [materialProviders, StudentService, ROUTER_PROVIDERS],
+  directives: const [ROUTER_DIRECTIVES],
+  providers: const [StudentService, ROUTER_PROVIDERS],
 )
 
 @RouteConfig(const [

@@ -1,9 +1,9 @@
 // Copyright (c) 2016, Patrick Lam. All rights reserved. Use of this source code
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
-import 'student.dart';
-import 'course_mark.dart';
-import 'student_enrolment.dart';
+import '../common/student.dart';
+import '../common/course_mark.dart';
+import '../common/student_enrolment.dart';
 
 final List<Student> mockStudents = [
   new Student(1, '20000000', 'Test1', 'Student1'),
