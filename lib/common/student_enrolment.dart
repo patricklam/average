@@ -1,12 +1,14 @@
 class StudentEnrolment {
   final int id;
-  final int student_internal_id;
+  int student_internal_id;
   String term;
   String program;
   String level;
 
+  StudentEnrolment();
+  StudentEnrolment.fromArgs(this.id, this.student_internal_id, this.term, this.program, this.level);
   factory StudentEnrolment.fromJson(Map<String, dynamic> student_enrolment) =>
-    new StudentEnrolment(_toInt(student_enrolment['id']),
+    new StudentEnrolment.fromArgs(_toInt(student_enrolment['id']),
                          _toInt(student_enrolment['student_internal_id']),
                          student_enrolment['term'],
                          student_enrolment['program'],
@@ -16,8 +18,6 @@ class StudentEnrolment {
                    'term': term,
                    'program': program,
                    'level': level};
-
-  StudentEnrolment(this.id, this.student_internal_id, this.term, this.program, this.level);
 }
 
 int _toInt(id) => id is int ? id : int.parse(id);
