@@ -57,7 +57,7 @@ Future requestHandler(HttpRequest request) async {
     request.response.redirect(Uri.parse('/index.html'));
   } else {
     // Serve the requested file (path) from the virtual directory,
-    // minus the preceeding '/'. 
+    // minus the preceding '/'.
     // If the request is not for a valid file, serve index.html instead.
     var fileUri = new Uri.file(_buildPath)
         .resolve(request.uri.path.substring(1));
