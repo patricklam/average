@@ -48,9 +48,13 @@ class StudentsApi {
 
   @ApiMethod(method: 'POST', path: 'student')
   Student addStudent(Student ns) {
-    var newStudent = new Student.fromArgs(_makeFreshStudentID(), ns.uwid, ns.firstname, ns.lastname);
-    _students[newStudent.internal_id] = newStudent;
-    return newStudent;
+    var s;
+    if (ns.internal_id == -1)
+        s = new Student.fromArgs(_makeFreshStudentID(), ns.uwid, ns.firstname, ns.lastname);
+    else
+        s = ns;
+    _students[s.internal_id] = s;
+    return s;
   }
 
   @ApiMethod(method: 'POST', path: 'course_mark')

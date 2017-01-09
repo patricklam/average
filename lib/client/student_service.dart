@@ -1,6 +1,6 @@
 import 'dart:core';
 import 'dart:async' as async;
-import 'dart:convert' as convert;
+import 'dart:convert';
 
 import 'package:_discoveryapis_commons/_discoveryapis_commons.dart'
     as commons;
@@ -107,4 +107,30 @@ class StudentService {
     Student s = (await getStudents()).firstWhere((student) => student.uwid == uwid);
     return (await getCourseMarks()).where((courseMark) => courseMark.student_internal_id == s.internal_id);
   }
+
+  static final _headers = {'ContentType': 'application/json'};
+
+  async.Future<Student> update(Student student) async {
+    var _url = null;
+    var _queryParams = new Map();
+    var _uploadMedia = null;
+    var _uploadOptions = null;
+    var _downloadOptions = commons.DownloadOptions.Metadata;
+    var _body = null;
+
+    if (student != null) {
+      _body = JSON.encode(student.toJson());
+    }
+
+    _url = 'student';
+
+    var _response = _requester.request(_url,
+                                       "POST",
+                                       body: _body,
+                                       queryParams: _queryParams,
+                                       uploadOptions: _uploadOptions,
+                                       uploadMedia: _uploadMedia,
+                                       downloadOptions: _downloadOptions);
+    return _response.then((data) => new Student.fromJson(data));
+ }
 }

@@ -43,6 +43,10 @@ class StudentDetailComponent implements OnInit {
       average = 0.0;
     }
   }
+  Future<Null> save() async {
+    await _studentService.update(student);
+    goBack();
+  }
 
   void goBack() => _location.back();
 }

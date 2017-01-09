@@ -1,5 +1,5 @@
 class Student {
-  final int internal_id;
+  int internal_id;
   String uwid;
   String firstname;
   String lastname;
@@ -12,7 +12,8 @@ class Student {
   factory Student.fromJson(Map<String, dynamic> student) =>
     new Student.fromArgs(_toInt(student['internal_id']),
                 student['uwid'],
-                student['firstname'], student['lastname']);
+                student['firstname'],
+                student['lastname']);
   Map toJson() => {'internal_id': internal_id,
                    'uwid': uwid,
                    'firstname': firstname,

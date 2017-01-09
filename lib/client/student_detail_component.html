@@ -16,6 +16,7 @@
     <label>Program: </label>
     <input [(ngModel)]="studentEnrolment.program" placeholder="Program" />
   </div>
+  <button (click)="save()">Save</button>
   <div *ngIf="studentMarks != null">
     <label>Marks</label>
     <ul class="marks">
