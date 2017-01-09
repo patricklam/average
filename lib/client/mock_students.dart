@@ -6,11 +6,11 @@ import '../common/course_mark.dart';
 import '../common/student_enrolment.dart';
 
 final List<Student> mockStudents = [
-  new Student(1, '20000000', 'Test1', 'Student1'),
-  new Student(2, '20000001', 'Test2', 'Student2'),
-  new Student(3, '20000002', 'Test3', 'Student3'),
-  new Student(4, '20000003', 'Test4', 'Student4'),
-  new Student(5, '20000004', 'Test5', 'Student5')
+  new Student.fromArgs(1, '20000000', 'Test1', 'Student1'),
+  new Student.fromArgs(2, '20000001', 'Test2', 'Student2'),
+  new Student.fromArgs(3, '20000002', 'Test3', 'Student3'),
+  new Student.fromArgs(4, '20000003', 'Test4', 'Student4'),
+  new Student.fromArgs(5, '20000004', 'Test5', 'Student5')
 ];
 
 final List<CourseMark> mockCourseMarks = [
