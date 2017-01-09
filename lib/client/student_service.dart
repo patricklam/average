@@ -22,7 +22,7 @@ class StudentService {
 
   StudentService(http.Client client)
     : _requester = new commons.ApiRequester(
-        client, "http://localhost:8008", "studentsApi/v1/", USER_AGENT);
+        client, "http://localhost:8088/", "studentsApi/v1/", USER_AGENT);
 
   /**
    * Request parameters:
@@ -35,7 +35,7 @@ class StudentService {
    * If the used [http.Client] completes with an error when making a REST call,
    * this method  will complete with the same error.
    */
-/*  async.Future<List<Student>> getStudents() {
+  async.Future<List<Student>> getStudents() {
     var _url = null;
     var _queryParams = new Map();
     var _uploadMedia = null;
@@ -53,11 +53,47 @@ class StudentService {
         downloadOptions: _downloadOptions);
     return _response.then((data) =>
         data.map((value) => new Student.fromJson(value)).toList());
-  }*/
+  }
 
-  async.Future<List<Student>> getStudents() async => mockStudents;
-  async.Future<List<CourseMark>> getCourseMarks() async => mockCourseMarks;
-  async.Future<List<StudentEnrolment>> getStudentEnrolments() async => mockStudentEnrolments;
+  async.Future<List<CourseMark>> getCourseMarks() async {
+    var _url = null;
+    var _queryParams = new Map();
+    var _uploadMedia = null;
+    var _uploadOptions = null;
+    var _downloadOptions = commons.DownloadOptions.Metadata;
+    var _body = null;
+
+    _url = 'course_marks';
+
+    var _response = _requester.request(_url, "GET",
+        body: _body,
+        queryParams: _queryParams,
+        uploadOptions: _uploadOptions,
+        uploadMedia: _uploadMedia,
+        downloadOptions: _downloadOptions);
+    return _response.then((data) =>
+        data.map((value) => new CourseMark.fromJson(value)).toList());
+  }
+
+  async.Future<List<StudentEnrolment>> getStudentEnrolments() async {
+    var _url = null;
+    var _queryParams = new Map();
+    var _uploadMedia = null;
+    var _uploadOptions = null;
+    var _downloadOptions = commons.DownloadOptions.Metadata;
+    var _body = null;
+
+    _url = 'student_enrolments';
+
+    var _response = _requester.request(_url, "GET",
+        body: _body,
+        queryParams: _queryParams,
+        uploadOptions: _uploadOptions,
+        uploadMedia: _uploadMedia,
+        downloadOptions: _downloadOptions);
+    return _response.then((data) =>
+        data.map((value) => new StudentEnrolment.fromJson(value)).toList());
+  }
 
   async.Future<Student> getStudent(int internal_id) async =>
     (await getStudents()).firstWhere((student) => student.internal_id == internal_id);

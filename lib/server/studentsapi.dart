@@ -13,9 +13,11 @@ import '../common/course_mark.dart';
 
 @ApiClass(version: 'v1')
 class StudentsApi {
-  final Map<int, Student> _students = {}; int _studentsMaxID = 0;
-  final Map<int, CourseMark> _courseMarks = {};
-  final Map<int, StudentEnrolment> _studentEnrolments = {};
+  final Map<int, Student> _students = {}; int _nextStudentID = 0;
+  final Map<int, CourseMark> _courseMarks = {}; int _nextCourseMarkID = 0;
+  final Map<int, StudentEnrolment> _studentEnrolments = {}; int _nextStudentEnrolmentID = 0;
+
+  final Map<Map<int, dynamic>, int> _maxID = {};
 
   StudentsApi() {
   }
@@ -46,14 +48,45 @@ class StudentsApi {
 
   @ApiMethod(method: 'POST', path: 'student')
   Student addStudent(Student ns) {
-    var newStudent = new Student.fromArgs(_makeFreshID(), ns.uwid, ns.firstname, ns.lastname);
+    var newStudent = new Student.fromArgs(_makeFreshStudentID(), ns.uwid, ns.firstname, ns.lastname);
     _students[newStudent.internal_id] = newStudent;
     return newStudent;
   }
 
-  int _makeFreshID() {
-    while (_students.containsKey(_studentsMaxID))
-      _studentsMaxID++;
-    return _studentsMaxID;
+  @ApiMethod(method: 'POST', path: 'course_mark')
+  CourseMark addCourseMark(CourseMark cm) {
+    var newCourseMark = new CourseMark.fromArgs(_makeFreshCourseMarkID(),
+                                                cm.student_internal_id,
+                                                cm.subject, cm.course, cm.section,
+                                                cm.mark);
+    _courseMarks[newCourseMark.id] = newCourseMark;
+    return newCourseMark;
+  }
+
+  @ApiMethod(method: 'POST', path: 'student_enrolment')
+  StudentEnrolment addStudentEnrolment(StudentEnrolment se) {
+    var newStudentEnrolment = new StudentEnrolment.fromArgs(_makeFreshStudentEnrolmentID(),
+                                                            se.student_internal_id,
+                                                            se.term, se.program, se.level);
+    _studentEnrolments[newStudentEnrolment.id] = newStudentEnrolment;
+    return newStudentEnrolment;
+  }
+
+  int _makeFreshStudentID() {
+    while (_students.containsKey(_nextStudentID))
+      _nextStudentID++;
+    return _nextStudentID;
+  }
+
+  int _makeFreshCourseMarkID() {
+    while (_courseMarks.containsKey(_nextCourseMarkID))
+      _nextCourseMarkID++;
+    return _nextCourseMarkID;
+  }
+
+  int _makeFreshStudentEnrolmentID() {
+    while (_studentEnrolments.containsKey(_nextStudentEnrolmentID))
+      _nextStudentEnrolmentID++;
+    return _nextStudentEnrolmentID;
   }
 }
