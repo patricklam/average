@@ -46,8 +46,8 @@ class CoursesComponent implements OnInit {
   }
 
   Future<Null> ngOnInit() async {
-    courses = (await _studentService.getCourses()).toList();
-    course_marks = (await _studentService.getCourseMarks()).toList();
+    courses = (await _studentService.getCourses());
+    course_marks = (await _studentService.getCourseMarks());
 
     Map<Course, double> course_sums = {};
     for (var c in courses) {
