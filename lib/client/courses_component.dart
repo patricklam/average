@@ -2,6 +2,7 @@
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
 import 'dart:async';
+import 'dart:math';
 
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
@@ -25,7 +26,8 @@ class CoursesComponent implements OnInit {
   List<CourseMark> course_marks;
 
   Map<Course, int> course_sizes = {};
-  Map<Course, double> course_averages = {};
+  Map<Course, double> course_means = {};
+  Map<Course, double> course_standard_deviations = {};
 
   Course selectedCourse;
 
@@ -45,22 +47,32 @@ class CoursesComponent implements OnInit {
 
   Future<Null> ngOnInit() async {
     courses = (await _studentService.getCourses()).toList();
-    var q = (await _studentService.getCourseMarks());
     course_marks = (await _studentService.getCourseMarks()).toList();
 
     Map<Course, double> course_sums = {};
     for (var c in courses) {
       course_sums[c] = 0.0;
       course_sizes[c] = 0;
+      course_standard_deviations[c] = 0.0;
     }
 
+    // calculate means
     for (var cm in course_marks) {
       Course c = getCourse(cm.course_internal_id);
       course_sums[c] += int.parse(cm.mark);
       course_sizes[c] += 1;
     }
     for (var c in courses) {
-      course_averages[c] = course_sums[c]/course_sizes[c];
+      course_means[c] = course_sums[c]/course_sizes[c];
+    }
+
+    // calculate standard deviations
+    for (var cm in course_marks) {
+      Course c = getCourse(cm.course_internal_id);
+      course_standard_deviations[c] += pow(double.parse(cm.mark) - course_means[c], 2);
+    }
+    for (var c in courses) {
+      course_standard_deviations[c] = sqrt(course_standard_deviations[c] / course_sizes[c]);
     }
   }
 
