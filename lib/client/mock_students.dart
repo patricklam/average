@@ -2,6 +2,7 @@
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
 import '../common/student.dart';
+import '../common/course.dart';
 import '../common/course_mark.dart';
 import '../common/student_enrolment.dart';
 
@@ -14,30 +15,30 @@ final List<Student> mockStudents = [
 ];
 
 final List<CourseMark> mockCourses = [
-  new CourseMark(1, '1169', 'ECE', '150', '001'),
-  new CourseMark(2, '1169', 'ECE', '105', '001'),
-  new CourseMark(3, '1169', 'ECE', '140', '001'),
-  new CourseMark(4, '1169', 'MATH', '115', '001'),
-  new CourseMark(5, '1169', 'CHE', '102', '001')
+  new Course.fromArgs(1, '1169', 'ECE', '150', '001'),
+  new Course.fromArgs(2, '1169', 'ECE', '105', '001'),
+  new Course.fromArgs(3, '1169', 'ECE', '140', '001'),
+  new Course.fromArgs(4, '1169', 'MATH', '115', '001'),
+  new Course.fromArgs(5, '1169', 'CHE', '102', '001')
 ];
 
 final List<CourseMark> mockCourseMarks = [
-  new CourseMark(1, 1,  '100'),
-  new CourseMark(2, 2,  '94'),
-  new CourseMark(3, 3,  '93'),
-  new CourseMark(4, 4,  '88'),
-  new CourseMark(5, 5,  '77'),
-  new CourseMark(6, 1,  '28'),
-  new CourseMark(7, 2,  '94'),
-  new CourseMark(8, 3,  '93'),
-  new CourseMark(9, 4,  '88'),
-  new CourseMark(10, 5, '77')
+  new CourseMark.fromArgs(1, 1,  1, '100'),
+  new CourseMark.fromArgs(2, 2,  1, '94'),
+  new CourseMark.fromArgs(3, 3,  1, '93'),
+  new CourseMark.fromArgs(4, 4,  1, '88'),
+  new CourseMark.fromArgs(5, 5,  1, '77'),
+  new CourseMark.fromArgs(6, 1,  2, '28'),
+  new CourseMark.fromArgs(7, 2,  3, '94'),
+  new CourseMark.fromArgs(8, 3,  4, '93'),
+  new CourseMark.fromArgs(9, 4,  4, '88'),
+  new CourseMark.fromArgs(10, 5, 5, '77')
 ];
 
 final List<StudentEnrolment> mockStudentEnrolments = [
-  new StudentEnrolment(1, 1, '1169', 'CE', '1A'),
-  new StudentEnrolment(2, 2, '1169', 'CE', '1A'),
-  new StudentEnrolment(3, 3, '1169', 'CE', '1A'),
-  new StudentEnrolment(4, 4, '1169', 'EE', '1A'),
-  new StudentEnrolment(5, 5, '1169', 'EE', '1A')
+  new StudentEnrolment.fromArgs(1, 1, '1169', 'CE', '1A'),
+  new StudentEnrolment.fromArgs(2, 2, '1169', 'CE', '1A'),
+  new StudentEnrolment.fromArgs(3, 3, '1169', 'CE', '1A'),
+  new StudentEnrolment.fromArgs(4, 4, '1169', 'EE', '1A'),
+  new StudentEnrolment.fromArgs(5, 5, '1169', 'EE', '1A')
 ];
