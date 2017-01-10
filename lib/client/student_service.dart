@@ -13,15 +13,18 @@ import '../common/course.dart';
 import '../common/course_mark.dart';
 import '../common/student_enrolment.dart';
 
-const String USER_AGENT = 'dart-api-client studentsApi/v1';
+const String PREFIX = 'studentsApi/v1/';
+const String USER_AGENT = 'dart-api-client ' + PREFIX;
 
 @Injectable()
 class StudentService {
   final commons.ApiRequester _requester;
+  final http.Client _client;
 
   StudentService(http.Client client)
-    : _requester = new commons.ApiRequester(
-        client, "http://localhost:8088/", "studentsApi/v1/", USER_AGENT);
+    : _client = client,
+      _requester = new commons.ApiRequester(
+        client, "http://localhost:8088/", PREFIX, USER_AGENT);
 
   /**
    * Request parameters:
@@ -148,6 +151,13 @@ class StudentService {
         data.map((value) => new StudentEnrolment.fromJson(value)).toList());
   }
 
+  dynamic _extractData(http.Response resp) => JSON.decode(resp.body);
+
+  Exception _handleError(dynamic e) {
+    print(e); // for demo purposes only
+    return new Exception('Server error; cause: $e');
+  }
+
   /**
    * Request parameters:
    *
@@ -159,24 +169,13 @@ class StudentService {
    * If the used [http.Client] completes with an error when making a REST call,
    * this method  will complete with the same error.
    */
-  async.Future<Student> getStudent(int internal_id) {
-    var _url = null;
-    var _queryParams = {"internal_id":internal_id};
-    var _uploadMedia = null;
-    var _uploadOptions = null;
-    var _downloadOptions = commons.DownloadOptions.Metadata;
-    var _body = null;
-
-    _url = 'student';
-
-    var _response = _requester.request(_url, "GET",
-        body: _body,
-        queryParams: _queryParams,
-        uploadOptions: _uploadOptions,
-        uploadMedia: _uploadMedia,
-        downloadOptions: _downloadOptions);
-    return _response.then((data) =>
-        new Student.fromJson(data));
+  async.Future<Student> getStudent(int internal_id) async {
+    try {
+      final response = await _client.get(PREFIX + 'student/$internal_id');
+      return new Student.fromJson(_extractData(response));
+    } catch (e) {
+      throw _handleError(e);
+    }
   }
 
   async.Future<StudentEnrolment> getStudentEnrolment(String uwid) async {
