@@ -178,6 +178,26 @@ class StudentService {
     }
   }
 
+  /**
+   * Request parameters:
+   *
+   * Completes with a [Course] corresponding to the given ID.
+   *
+   * Completes with a [commons.ApiRequestError] if the API endpoint returned an
+   * error.
+   *
+   * If the used [http.Client] completes with an error when making a REST call,
+   * this method  will complete with the same error.
+   */
+  async.Future<Course> getCourse(int id) async {
+    try {
+      final response = await _client.get(PREFIX + 'course/$id');
+      return new Course.fromJson(_extractData(response));
+    } catch (e) {
+      throw _handleError(e);
+    }
+  }
+
   async.Future<StudentEnrolment> getStudentEnrolment(String uwid) async {
     Student s = (await getStudents()).firstWhere((student) => student.uwid == uwid);
     return (await getStudentEnrolments()).firstWhere((enrolment) => enrolment.student_internal_id == s.internal_id);

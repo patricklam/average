@@ -29,8 +29,6 @@ class CoursesComponent implements OnInit {
   Map<Course, double> course_means = {};
   Map<Course, double> course_standard_deviations = {};
 
-  Course selectedCourse;
-
   Map<int, Course> cached_course = {};
   Course getCourse(int id) {
     if (cached_course.containsKey(id))
@@ -76,11 +74,7 @@ class CoursesComponent implements OnInit {
     }
   }
 
-  void onSelect(Course course) {
-    selectedCourse = course;
-  }
-
-  Future<Null> gotoDetail() => _router.navigate([
+  Future<Null> gotoDetail(int id) => _router.navigate([
     'CourseDetail',
-    {'id': selectedCourse.id.toString()}]);
+    {'id': id.toString()}]);
 }

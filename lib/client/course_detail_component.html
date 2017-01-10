@@ -1,0 +1,7 @@
+<h2>{{course.term}} {{course.subject}} {{course.course}} ({{course.section}}) details</h2>
+<table class="students">
+  <tr *ngFor="let student of students">
+    <td>{{student.uwid}}</td><td>{{student.firstname}} {{student.lastname}}</td><td>{{marks[student]}}</td>
+  </tr>
+</table>
+<button (click)="goBack()">Back</button>
