@@ -44,7 +44,7 @@ class StudentsApi {
 
   // Returns a course by id
   @ApiMethod(method: 'GET', path: 'course/{id}')
-  Student getCourse(String id) {
+  Course getCourse(String id) {
     return _courses[int.parse(Uri.decodeComponent(id))];
   }
 
