@@ -35,7 +35,7 @@ class StudentDetailComponent implements OnInit {
     var _id = _routeParams.get('id');
     var id = int.parse(_id ?? '', onError: (_) => null);
     if (id != null) student = await (_studentService.getStudent(id));
-    _courses = await (_studentService.getCourses());
+    _courses = (await (_studentService.getCourses())).toList();
     if (student != null) studentEnrolment = await (_studentService.getStudentEnrolment(student.uwid));
     if (student != null) {
       studentMarks = await (_studentService.getStudentCourseMarks(student.uwid));
