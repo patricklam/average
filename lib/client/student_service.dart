@@ -13,8 +13,6 @@ import '../common/course.dart';
 import '../common/course_mark.dart';
 import '../common/student_enrolment.dart';
 
-import 'mock_students.dart';
-
 const String USER_AGENT = 'dart-api-client studentsApi/v1';
 
 @Injectable()
