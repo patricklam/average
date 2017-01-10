@@ -57,7 +57,7 @@ class StudentDetailComponent implements OnInit {
       return coursesByID[course_id];
 
     for (var c in _courses) {
-      if (c.internal_id == course_id) {
+      if (c.id == course_id) {
         coursesByID[course_id] = c;
         return c;
       }

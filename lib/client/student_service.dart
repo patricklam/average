@@ -114,6 +114,7 @@ class StudentService {
         uploadOptions: _uploadOptions,
         uploadMedia: _uploadMedia,
         downloadOptions: _downloadOptions);
+    // I don't understand why this gives a client-side nullerror (method not found).
     return _response.then((data) =>
         data.map((value) => new CourseMark.fromJson(value)).toList());
   }
@@ -149,8 +150,36 @@ class StudentService {
         data.map((value) => new StudentEnrolment.fromJson(value)).toList());
   }
 
-  async.Future<Student> getStudent(int internal_id) async =>
-    (await getStudents()).firstWhere((student) => student.internal_id == internal_id);
+  /**
+   * Request parameters:
+   *
+   * Completes with a [Student] corresponding to the given internal ID.
+   *
+   * Completes with a [commons.ApiRequestError] if the API endpoint returned an
+   * error.
+   *
+   * If the used [http.Client] completes with an error when making a REST call,
+   * this method  will complete with the same error.
+   */
+  async.Future<Student> getStudent(int internal_id) {
+    var _url = null;
+    var _queryParams = {"internal_id":internal_id};
+    var _uploadMedia = null;
+    var _uploadOptions = null;
+    var _downloadOptions = commons.DownloadOptions.Metadata;
+    var _body = null;
+
+    _url = 'student';
+
+    var _response = _requester.request(_url, "GET",
+        body: _body,
+        queryParams: _queryParams,
+        uploadOptions: _uploadOptions,
+        uploadMedia: _uploadMedia,
+        downloadOptions: _downloadOptions);
+    return _response.then((data) =>
+        new Student.fromJson(data));
+  }
 
   async.Future<StudentEnrolment> getStudentEnrolment(String uwid) async {
     Student s = (await getStudents()).firstWhere((student) => student.uwid == uwid);

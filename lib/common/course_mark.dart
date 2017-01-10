@@ -13,7 +13,7 @@ class CourseMark {
                    course_mark['mark']);
   Map toJson() => {'id': id,
                    'student_internal_id': student_internal_id,
-                   'course_internal_id': student_internal_id,
+                   'course_internal_id': course_internal_id,
                    'mark': mark};
 }
 

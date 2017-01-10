@@ -21,14 +21,25 @@ class DashboardComponent implements OnInit {
 
   DashboardComponent(this._studentService);
 
+  List<CourseMark> getStudentCourseMarks(List<CourseMark> courseMarks, int internal_id) {
+    return courseMarks.where((courseMark) => courseMark.student_internal_id == internal_id);
+  }
+
+  Iterable<StudentEnrolment> getStudentEnrolment(List<StudentEnrolment> studentEnrolments, int internal_id) {
+    return studentEnrolments.where((studentEnrolment) => studentEnrolment.student_internal_id == internal_id);
+  }
+
   Future<Null> ngOnInit() async {
     students = (await _studentService.getStudents()).toList();
+    var courseMarks = (await (_studentService.getCourseMarks())).toList();
+    var studentEnrolments = (await (_studentService.getStudentEnrolments())).toList();
     for (var student in students) {
-      var studentEnrolment = await (_studentService.getStudentEnrolment(student.uwid));
-      var studentMarks = await (_studentService.getStudentCourseMarks(student.uwid));
+      var studentMarks = getStudentCourseMarks(courseMarks, student.internal_id);
+      var studentEnrolment = getStudentEnrolment(studentEnrolments, student.internal_id).first;
       student.program = studentEnrolment.program;
       try {
         student.average = studentMarks.fold(0, (x, y) => x + int.parse(y.mark)) / studentMarks.length;
+        student.average = (student.average * 10).round() / 10;
       } catch (exception) {
         student.average = -1;
       }

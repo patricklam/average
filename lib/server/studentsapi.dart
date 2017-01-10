@@ -14,10 +14,10 @@ import '../common/course_mark.dart';
 
 @ApiClass(version: 'v1')
 class StudentsApi {
-  final Map<int, Student> _students = {}; int _nextStudentID = 0;
-  final Map<int, Course> _courses = {}; int _nextCourseID = 0;
-  final Map<int, CourseMark> _courseMarks = {}; int _nextCourseMarkID = 0;
-  final Map<int, StudentEnrolment> _studentEnrolments = {}; int _nextStudentEnrolmentID = 0;
+  final Map<int, Student> _students = {}; int _nextStudentID = 1;
+  final Map<int, Course> _courses = {}; int _nextCourseID = 1;
+  final Map<int, CourseMark> _courseMarks = {}; int _nextCourseMarkID = 1;
+  final Map<int, StudentEnrolment> _studentEnrolments = {}; int _nextStudentEnrolmentID = 1;
 
   final Map<Map<int, dynamic>, int> _maxID = {};
 
@@ -30,7 +30,7 @@ class StudentsApi {
     return _students.values.toList();
   }
 
-  // Returns a student
+  // Returns a student by internal id
   @ApiMethod(method: 'GET', path: 'student/{internal_id}')
   Student getStudent(String internal_id) {
     return _students[int.parse(Uri.decodeComponent(internal_id))];
@@ -40,6 +40,12 @@ class StudentsApi {
   @ApiMethod(method: 'GET', path: 'courses')
   List<Course> listCourses() {
     return _courses.values.toList();
+  }
+
+  // Returns a course by id
+  @ApiMethod(method: 'GET', path: 'course/{id}')
+  Student getCourse(String id) {
+    return _courses[int.parse(Uri.decodeComponent(id))];
   }
 
   // Returns a list of course marks
