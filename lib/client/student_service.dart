@@ -9,6 +9,7 @@ import 'package:angular2/core.dart';
 import 'package:http/http.dart' as http;
 
 import '../common/student.dart';
+import '../common/course.dart';
 import '../common/course_mark.dart';
 import '../common/student_enrolment.dart';
 
@@ -55,6 +56,48 @@ class StudentService {
         data.map((value) => new Student.fromJson(value)).toList());
   }
 
+  /**
+   * Request parameters:
+   *
+   * Completes with a [List<CourseMark>].
+   *
+   * Completes with a [commons.ApiRequestError] if the API endpoint returned an
+   * error.
+   *
+   * If the used [http.Client] completes with an error when making a REST call,
+   * this method  will complete with the same error.
+   */
+  async.Future<List<Course>> getCourses() async {
+    var _url = null;
+    var _queryParams = new Map();
+    var _uploadMedia = null;
+    var _uploadOptions = null;
+    var _downloadOptions = commons.DownloadOptions.Metadata;
+    var _body = null;
+
+    _url = 'courses';
+
+    var _response = _requester.request(_url, "GET",
+        body: _body,
+        queryParams: _queryParams,
+        uploadOptions: _uploadOptions,
+        uploadMedia: _uploadMedia,
+        downloadOptions: _downloadOptions);
+    return _response.then((data) =>
+        data.map((value) => new Course.fromJson(value)).toList());
+  }
+
+  /**
+   * Request parameters:
+   *
+   * Completes with a [List<CourseMark>].
+   *
+   * Completes with a [commons.ApiRequestError] if the API endpoint returned an
+   * error.
+   *
+   * If the used [http.Client] completes with an error when making a REST call,
+   * this method  will complete with the same error.
+   */
   async.Future<List<CourseMark>> getCourseMarks() async {
     var _url = null;
     var _queryParams = new Map();
@@ -75,6 +118,17 @@ class StudentService {
         data.map((value) => new CourseMark.fromJson(value)).toList());
   }
 
+  /**
+   * Request parameters:
+   *
+   * Completes with a [List<StudentEnrolment>].
+   *
+   * Completes with a [commons.ApiRequestError] if the API endpoint returned an
+   * error.
+   *
+   * If the used [http.Client] completes with an error when making a REST call,
+   * this method  will complete with the same error.
+   */
   async.Future<List<StudentEnrolment>> getStudentEnrolments() async {
     var _url = null;
     var _queryParams = new Map();

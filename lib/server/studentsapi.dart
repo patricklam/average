@@ -9,11 +9,13 @@ import 'package:rpc/rpc.dart';
 
 import '../common/student.dart';
 import '../common/student_enrolment.dart';
+import '../common/course.dart';
 import '../common/course_mark.dart';
 
 @ApiClass(version: 'v1')
 class StudentsApi {
   final Map<int, Student> _students = {}; int _nextStudentID = 0;
+  final Map<int, Course> _courses = {}; int _nextCourseID = 0;
   final Map<int, CourseMark> _courseMarks = {}; int _nextCourseMarkID = 0;
   final Map<int, StudentEnrolment> _studentEnrolments = {}; int _nextStudentEnrolmentID = 0;
 
@@ -32,6 +34,12 @@ class StudentsApi {
   @ApiMethod(method: 'GET', path: 'student/{internal_id}')
   Student getStudent(String internal_id) {
     return _students[int.parse(Uri.decodeComponent(internal_id))];
+  }
+
+  // Returns a list of courses
+  @ApiMethod(method: 'GET', path: 'courses')
+  List<Course> listCourses() {
+    return _courses.values.toList();
   }
 
   // Returns a list of course marks
@@ -57,11 +65,20 @@ class StudentsApi {
     return s;
   }
 
+  @ApiMethod(method: 'POST', path: 'course')
+  Course addCourse(Course c) {
+    var newCourse = new Course.fromArgs(_makeFreshCourseID(),
+                                        c.term,
+                                        c.subject, c.course, c.section);
+    _courses[newCourse.id] = newCourse;
+    return newCourse;
+  }
+
   @ApiMethod(method: 'POST', path: 'course_mark')
   CourseMark addCourseMark(CourseMark cm) {
     var newCourseMark = new CourseMark.fromArgs(_makeFreshCourseMarkID(),
                                                 cm.student_internal_id,
-                                                cm.subject, cm.course, cm.section,
+                                                cm.course_internal_id,
                                                 cm.mark);
     _courseMarks[newCourseMark.id] = newCourseMark;
     return newCourseMark;
@@ -80,6 +97,12 @@ class StudentsApi {
     while (_students.containsKey(_nextStudentID))
       _nextStudentID++;
     return _nextStudentID;
+  }
+
+  int _makeFreshCourseID() {
+    while (_courses.containsKey(_nextCourseID))
+      _nextCourseID++;
+    return _nextCourseID;
   }
 
   int _makeFreshCourseMarkID() {

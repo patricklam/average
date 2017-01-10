@@ -10,6 +10,7 @@ import 'package:angular2/platform/common.dart';
 import '../common/student.dart';
 import '../common/student_enrolment.dart';
 import '../common/course_mark.dart';
+import '../common/course.dart';
 import 'student_service.dart';
 
 @Component(
@@ -23,6 +24,7 @@ class StudentDetailComponent implements OnInit {
   List<CourseMark> studentMarks;
   double average;
 
+  List<Course> _courses;
   final StudentService _studentService;
   final RouteParams _routeParams;
   final Location _location;
@@ -33,6 +35,7 @@ class StudentDetailComponent implements OnInit {
     var _id = _routeParams.get('id');
     var id = int.parse(_id ?? '', onError: (_) => null);
     if (id != null) student = await (_studentService.getStudent(id));
+    _courses = await (_studentService.getCourses());
     if (student != null) studentEnrolment = await (_studentService.getStudentEnrolment(student.uwid));
     if (student != null) {
       studentMarks = await (_studentService.getStudentCourseMarks(student.uwid));
@@ -46,6 +49,20 @@ class StudentDetailComponent implements OnInit {
   Future<Null> save() async {
     await _studentService.update(student);
     goBack();
+  }
+
+  final Map<int, Course> coursesByID = {};
+  Course getCourseByID(int course_id) {
+    if (coursesByID.containsKey(course_id))
+      return coursesByID[course_id];
+
+    for (var c in _courses) {
+      if (c.internal_id == course_id) {
+        coursesByID[course_id] = c;
+        return c;
+      }
+    }
+    return null;
   }
 
   void goBack() => _location.back();

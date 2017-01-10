@@ -13,17 +13,25 @@ final List<Student> mockStudents = [
   new Student.fromArgs(5, '20000004', 'Test5', 'Student5')
 ];
 
+final List<CourseMark> mockCourses = [
+  new CourseMark(1, '1169', 'ECE', '150', '001'),
+  new CourseMark(2, '1169', 'ECE', '105', '001'),
+  new CourseMark(3, '1169', 'ECE', '140', '001'),
+  new CourseMark(4, '1169', 'MATH', '115', '001'),
+  new CourseMark(5, '1169', 'CHE', '102', '001')
+];
+
 final List<CourseMark> mockCourseMarks = [
-  new CourseMark(1, 1, 'ECE', '150', '001', '100'),
-  new CourseMark(2, 1, 'ECE', '105', '001', '94'),
-  new CourseMark(3, 1, 'ECE', '140', '001', '93'),
-  new CourseMark(4, 1, 'MATH', '115', '001', '88'),
-  new CourseMark(5, 1, 'CHE', '102', '001', '77'),
-  new CourseMark(6, 2, 'ECE', '150', '001', '28'),
-  new CourseMark(7, 3, 'ECE', '105', '001', '94'),
-  new CourseMark(8, 4, 'ECE', '140', '001', '93'),
-  new CourseMark(9, 5, 'MATH', '115', '001', '88'),
-  new CourseMark(10, 5, 'CHE', '102', '001', '77')
+  new CourseMark(1, 1,  '100'),
+  new CourseMark(2, 2,  '94'),
+  new CourseMark(3, 3,  '93'),
+  new CourseMark(4, 4,  '88'),
+  new CourseMark(5, 5,  '77'),
+  new CourseMark(6, 1,  '28'),
+  new CourseMark(7, 2,  '94'),
+  new CourseMark(8, 3,  '93'),
+  new CourseMark(9, 4,  '88'),
+  new CourseMark(10, 5, '77')
 ];
 
 final List<StudentEnrolment> mockStudentEnrolments = [
