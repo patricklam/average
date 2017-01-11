@@ -1,6 +1,15 @@
+<div>
+<h4>Program</h4>
+  <select [(ngModel)]="program">
+    <option value="0">Any</option>
+    <option *ngFor="let prog of programs">{{prog}}</option>
+  </select>
+</div>
+
 <h3>Top Students</h3>
+
 <div class="grid grid-pad">
-  <a *ngFor="let student of students" [routerLink]="['StudentDetail', {id: student.internal_id.toString()}]" class="col-1-4">
+  <a *ngFor="let student of filteredStudents()" [routerLink]="['StudentDetail', {id: student.internal_id.toString()}]" class="col-1-4">
     <div class="module student">
       <h4>{{student.firstname}} {{student.lastname}} ({{student.program}}) {{student.average}}</h4>
     </div>
