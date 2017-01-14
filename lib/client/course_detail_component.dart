@@ -50,5 +50,5 @@ class CourseDetailComponent implements OnInit {
     }
   }
 
-  void goBack() => _location.back();
+  void goBack() {}
 }
