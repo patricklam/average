@@ -24,6 +24,14 @@ class StudentsApi {
   StudentsApi() {
   }
 
+  @ApiMethod(method: 'DELETE', path: 'clear')
+  VoidMessage clear() {
+    _students.clear();
+    _courses.clear();
+    _courseMarks.clear();
+    _studentEnrolments.clear();
+  }
+
   // Returns a list of students
   @ApiMethod(method: 'GET', path: 'students')
   List<Student> listStudents() {
